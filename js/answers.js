@@ -41,7 +41,8 @@
     }
 
     function solve1() {
-        var theDate = Date.getMonth() + "/" + Date.getDate() + "/" + Date.getFullYear();
+        var d = new Date();
+        var theDate = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
         window.console.log("THE SOLUTION FOR TASK 1:");
         document.getElementById("clear1").style.display = "inline";
         window.console.log(theDate);
@@ -295,6 +296,7 @@
 
     document.getElementById("submit1").addEventListener("click", solve1);
     document.getElementById("clear1").addEventListener("click", clear1);
+    /*
     document.getElementById("submit2").addEventListener("click", solve2);
     document.getElementById("submit3").addEventListener("click", solve3);
     document.getElementById("submit4").addEventListener("click", solve4);
@@ -302,6 +304,7 @@
     document.getElementById("submit6").addEventListener("click", solve6);
     document.getElementById("submit7").addEventListener("click", solve7);
     document.getElementById("submit8").addEventListener("click", solve8);
+    */
 
 
 }());
