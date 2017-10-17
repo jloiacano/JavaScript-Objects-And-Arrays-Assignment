@@ -53,8 +53,6 @@
     function clear1() {
         document.getElementById("answer1").innerHTML = "";
         document.getElementById("clear1").style.display = "none";
-        document.getElementById("q1i1").value = "";
-        document.getElementById("q1i2").value = "";
     }
 
     function solve2() {
