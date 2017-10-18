@@ -235,15 +235,17 @@
     }
 
     function solve6() {
-        var htmlResults = 0,
+        var myColor = ["Red", "Green", "White", "Black"],
+            stringToWorkWith = "\"",
             i;
-        for (i = 1; i <= 1000; i += 1) {
-            if ((i % 3 === 0) && (i % 5 === 0)) {
-                htmlResults += 1;
-            }
+
+        for (i = 0; i < myColor.length - 1; i += 1) {
+            stringToWorkWith += myColor[i] + ",";
         }
-        document.getElementById("task6Results").innerHTML = "There are " + htmlResults + " numbers between 1 and 1000 that are evenly divisible by three.";
-        window.console.log("There are " + htmlResults + " numbers between 1 and 1000 that are evenly divisible by three.");
+        stringToWorkWith += myColor[myColor.length - 1] + "\"";
+
+        document.getElementById("task6Results").innerHTML = "The resulting string is:" + stringToWorkWith;
+        window.console.log("The resulting string is:" + stringToWorkWith);
         document.getElementById("clear6").style.display = "inline";
     }
 
