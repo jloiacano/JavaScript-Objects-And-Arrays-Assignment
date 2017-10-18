@@ -354,4 +354,48 @@
     document.getElementById("submit10").addEventListener("click", solve10);
     document.getElementById("clear10").addEventListener("click", clear10);
 
+    document.getElementById('q4i1').onkeypress = function (e) {
+        if (!e) {
+            e = window.event;
+        }
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+            addTo4sArray();
+            return false;
+        }
+    };
+
+    document.getElementById('q5i1').onkeypress = function (e) {
+        if (!e) {
+            e = window.event;
+        }
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+            addTo5sArray();
+            return false;
+        }
+    };
+
+    document.getElementById('q7i1').onkeypress = function (e) {
+        if (!e) {
+            e = window.event;
+        }
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+            addTo7sArray();
+            return false;
+        }
+    };
+
+    document.getElementById('q9i1').onkeypress = function (e) {
+        if (!e) {
+            e = window.event;
+        }
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+            addTo9sArray();
+            return false;
+        }
+    };
+
 }());
