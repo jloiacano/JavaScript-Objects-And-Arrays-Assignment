@@ -23,7 +23,7 @@
 
     function isAResonableNumber(number, reasonable, signable) {
         if (!signable) {
-            if (number < 1) {
+            if (number < 0) {
                 return false;
             }
         }
@@ -203,27 +203,28 @@
     }
 
     function solve5() {
-        var htmlResults = "",
+        var arrayToWorkWith = arrayCopy(fivesArray),
+            n = document.getElementById("q5i2").value,
+            elementsToRemove,
             i;
-        for (i = 1; i <= 100; i += 1) {
-            if ((i % 3 === 0) && (i % 5 === 0)) {
-                htmlResults += "FizzBuzz <br />";
-                window.console.log("FizzBuzz");
-            } else if (i % 3 === 0) {
-                htmlResults += "Fizz <br />";
-                window.console.log("Fizz");
-            } else if (i % 5 === 0) {
-                htmlResults += "Buzz <br />";
-                window.console.log("Buzz");
+
+        if (!isInt(n) || !isAResonableNumber(n, arrayToWorkWith.length, false)) {
+            document.getElementById("q5i2Error").innerHTML = "* MUST BE ZERO, OR A VALID INTEGER WITHIN THE LENGTH OF THE ARRAY";
+        } else {
+            document.getElementById("q5i2Error").innerHTML = "";
+            if (parseInt(n, 10) === 0 || n === "") {
+                document.getElementById("task5Results").innerHTML = "The first element of the array is: " + arrayToWorkWith.unshift();
             } else {
-                htmlResults += i + "<br />";
-                window.console.log(i);
+                elementsToRemove = arrayToWorkWith.length - n;
+                for (i = 0; i < elementsToRemove; i += 1) {
+                    arrayToWorkWith.pop();
+                }
+                window.console.log("n is equal to " + n);
+                document.getElementById("task5Results").innerHTML = "The first " + n + " elements of the array are: " + arrayToWorkWith;
             }
         }
 
-        document.getElementById("task5Results").innerHTML = htmlResults;
         document.getElementById("clear5").style.display = "inline";
-        document.getElementById("secondClear5").style.display = "inline";
     }
 
     function clear5() {
