@@ -316,7 +316,39 @@
     }
 
     function solve9() {
-        window.console.log("solve9");
+        var arrayToWorkWith = arrayCopy(ninesArray),
+            arrayOfDuplicates = [],
+            arrayOfDuplicatesCurrentIndex = -1,
+            stringOfDuplicateValues = "",
+            i,
+            j;
+
+        for (i = 1; i < arrayToWorkWith.length; i += 1) {
+            if (arrayToWorkWith[i] === arrayToWorkWith[i - 1]) {
+                if ((arrayOfDuplicatesCurrentIndex === -1) || (arrayToWorkWith[i] !== arrayOfDuplicates[arrayOfDuplicatesCurrentIndex])) {
+                    arrayOfDuplicatesCurrentIndex += 1;
+                    arrayOfDuplicates[arrayOfDuplicatesCurrentIndex] = arrayToWorkWith[i];
+                }
+
+            }
+        }
+        for (j = 0; j < arrayOfDuplicatesCurrentIndex; j += 1) {
+            stringOfDuplicateValues += arrayOfDuplicates[j] + ", ";
+        }
+        stringOfDuplicateValues += " and " + arrayOfDuplicates[arrayOfDuplicates.length - 1];
+
+        window.console.log("stringOfDuplicateValues: " + stringOfDuplicateValues);
+        window.console.log("arrayOfDuplicatesCurrentIndex: " + arrayOfDuplicatesCurrentIndex);
+        window.console.log("arrayOfDuplicates: " + arrayOfDuplicates.toString());
+
+        if (arrayOfDuplicatesCurrentIndex === -1) {
+            document.getElementById("answer9").innerHTML = "There were no duplicate values";
+        } else if (arrayOfDuplicatesCurrentIndex === 0) {
+            document.getElementById("answer9").innerHTML = "There was one duplicate value.\nIt was: " + stringOfDuplicateValues;
+        } else {
+            document.getElementById("answer9").innerHTML = "There were " + arrayOfDuplicates.length + " values that occured more than once.\nThose values were: " + stringOfDuplicateValues;
+        }
+        document.getElementById("clear9").style.display = "inline";
     }
 
     function clear9() {
@@ -327,7 +359,18 @@
     }
 
     function solve10() {
-        window.console.log("solve10");
+        var stringToWorkWith = document.getElementById("q10i1").value,
+            stringArray = [],
+            stringToReturn = "",
+            i;
+        stringArray = stringToWorkWith.split('');
+        stringArray = stringArray.reverse();
+
+        for (i = 0; i < stringArray.length; i += 1) {
+            stringToReturn += stringArray[i];
+        }
+
+        document.getElementById("answer10").innerHTML = stringToReturn;
     }
 
     function clear10() {
