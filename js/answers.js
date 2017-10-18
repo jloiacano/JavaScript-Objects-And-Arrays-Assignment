@@ -377,6 +377,32 @@
         window.console.log("clear10");
     }
 
+    function solve11() {
+        var stringToWorkWith = document.getElementById("q11i1").value.trim(),
+            stringArray = [],
+            stringToReturn = "",
+            i;
+        stringArray = stringToWorkWith.split('');
+        stringArray = stringArray.reverse();
+
+        for (i = 0; i < stringArray.length; i += 1) {
+            stringToReturn += stringArray[i];
+        }
+
+        if (stringToReturn === stringToWorkWith) {
+            document.getElementById("answer11").innerHTML = stringToReturn + " is a palindrome!";
+        } else {
+            document.getElementById("answer11").innerHTML = stringToReturn + " is not a palindrome.";
+        }
+        document.getElementById("clear11").style.display = "inline";
+    }
+
+    function clear11() {
+        document.getElementById("q11i1").value = "";
+        document.getElementById("answer11").innerHTML = "";
+        document.getElementById("clear11").style.display = "none";
+    }
+
     document.getElementById("submit1").addEventListener("click", solve1);
     document.getElementById("clear1").addEventListener("click", clear1);
     document.getElementById("submit2").addEventListener("click", solve2);
@@ -399,6 +425,8 @@
     document.getElementById("clear9").addEventListener("click", clear9);
     document.getElementById("submit10").addEventListener("click", solve10);
     document.getElementById("clear10").addEventListener("click", clear10);
+    document.getElementById("submit11").addEventListener("click", solve11);
+    document.getElementById("clear11").addEventListener("click", clear11);
 
     document.getElementById('q4i1').onkeypress = function (e) {
         if (!e) {
