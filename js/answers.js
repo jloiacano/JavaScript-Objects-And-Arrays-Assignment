@@ -99,38 +99,42 @@
             num4 = document.getElementById("q3i4").value,
             num5 = document.getElementById("q3i5").value,
             numArray = [num1, num2, num3, num4, num5],
-            a = numArray.length - 1,
+            inputArray = ["q3i1", "q3i2", "q3i3", "q3i4", "q3i5"],
+            errorArray = ["q3i1Error", "q3i2Error", "q3i3Error", "q3i4Error", "q3i5Error"],
             i,
-            biggest = 0;
-        if (!isInt(num1)) {
-            document.getElementById("q3i1Error").innerHTML = "* MUST BE AN INTEGER";
-        }
-        if (!isInt(num2)) {
-            document.getElementById("q3i2Error").innerHTML = "* MUST BE AN INTEGER";
-        }
-        if (!isInt(num3)) {
-            document.getElementById("q3i3Error").innerHTML = "* MUST BE AN INTEGER";
-        }
-        if (!isInt(num4)) {
-            document.getElementById("q3i4Error").innerHTML = "* MUST BE AN INTEGER";
-        }
-        if (!isInt(num5)) {
-            document.getElementById("q3i5Error").innerHTML = "* MUST BE AN INTEGER";
-        }
-        if (isInt(num1) && isInt(num2) && isInt(num3) && isInt(num4) && isInt(num5)) {
+            consecutive = true;
 
-            for (i = 0; i < a; i += 1) {
-                biggest = Math.max(biggest, numArray[i]);
-                window.console.log("a-" + biggest + "\t\tb-" + numArray[i + 1] + "\t\t" + biggest);
+        for (i = 0; i < numArray.length; i += 1) {
+            if (!isInt(numArray[i]) || !isAResonableNumber(numArray[i], Infinity, false)) {
+                document.getElementById(errorArray[i]).innerHTML = "* MUST BE AN INTEGER";
+                document.getElementById(inputArray[i]).value = "";
+                document.getElementById(inputArray[i]).focus();
+            } else {
+                document.getElementById(errorArray[i]).innerHTML = "";
+                if (i !== 0 && (parseInt(numArray[i], 10) !== (parseInt(numArray[i - 1], 10) + 1))) {
+                    consecutive = false;
+                }
             }
-            window.alert(biggest);
-
-            document.getElementById("q3i1").value = "";
-            document.getElementById("q3i2").value = "";
-            document.getElementById("q3i3").value = "";
-            document.getElementById("q3i4").value = "";
-            document.getElementById("q3i5").value = "";
         }
+
+        if (!consecutive) {
+            document.getElementById("answer3").innerHTML = "The numbers of the array are NOT consecutive.";
+            document.getElementById("clear3").style.display = "inline";
+        } else {
+            document.getElementById("answer3").innerHTML = "The numbers of the array are consecutive.";
+            document.getElementById("clear3").style.display = "inline";
+        }
+    }
+
+
+    function clear3() {
+        document.getElementById("q3i1").value = "";
+        document.getElementById("q3i2").value = "";
+        document.getElementById("q3i3").value = "";
+        document.getElementById("q3i4").value = "";
+        document.getElementById("q3i5").value = "";
+        document.getElementById("answer3").innerHTML = "";
+        document.getElementById("clear3").style.display = "none";
     }
 
     function clear4() {
@@ -295,6 +299,8 @@
     document.getElementById("clear1").addEventListener("click", clear1);
     document.getElementById("submit2").addEventListener("click", solve2);
     document.getElementById("clear2").addEventListener("click", clear2);
+    document.getElementById("submit3").addEventListener("click", solve3);
+    document.getElementById("clear3").addEventListener("click", clear3);
     /*
     document.getElementById("submit3").addEventListener("click", solve3);
     document.getElementById("submit4").addEventListener("click", solve4);
