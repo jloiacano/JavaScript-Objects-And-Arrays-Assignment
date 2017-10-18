@@ -41,8 +41,8 @@
     }
 
     function solve1() {
-        var d = new Date();
-        var theDate = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
+        var d = new Date(),
+            theDate = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
         window.console.log("THE SOLUTION FOR TASK 1:");
         document.getElementById("clear1").style.display = "inline";
         window.console.log(theDate);
@@ -57,40 +57,39 @@
 
     function solve2() {
         var num1 = document.getElementById("q2i1").value,
-            num2 = document.getElementById("q2i2").value,
-            num3 = document.getElementById("q2i3").value,
-            numArray,
-            numArrayAscend,
-            numArrayDescend;
+            year = new Date().getFullYear();
 
-        if (!isInt(num1)) {
-            document.getElementById("q2i1Error").innerHTML = "* MUST BE AN INTEGER";
-        }
-        if (!isInt(num2)) {
-            document.getElementById("q2i2Error").innerHTML = "* MUST BE AN INTEGER";
-        }
-        if (!isInt(num3)) {
-            document.getElementById("q2i3Error").innerHTML = "* MUST BE AN INTEGER";
-        }
-
-        if (isInt(num1) && isInt(num2) && isInt(num3)) {
-            numArray = [num1, num2, num3];
-            numArrayAscend = arrayCopy(numArray);
-            numArrayDescend = arrayCopy(numArray);
-            numArrayAscend.sort(function (a, b) {
-                return a - b;
-            });
-            numArrayDescend.sort(function (a, b) {
-                return b - a;
-            });
-            window.alert("Ascending: " + numArrayAscend + "\nDescending: " + numArrayDescend);
-            document.getElementById("q2i1").value = "";
-            document.getElementById("q2i2").value = "";
-            document.getElementById("q2i3").value = "";
+        if (isInt(num1) && isAResonableNumber(num1, (year * 2), false)) {
             document.getElementById("q2i1Error").innerHTML = "";
-            document.getElementById("q2i2Error").innerHTML = "";
-            document.getElementById("q2i3Error").innerHTML = "";
+            document.getElementById("clear2").style.display = "inline";
+            if (((num1 % 100 !== 0) || (num1 % 400 === 0)) && (num1 % 4 === 0)) {
+                if (num1 < year) {
+                    document.getElementById("answer2").innerHTML = num1 + " was a leap year";
+                    window.console.log(num1 + " was a leap year");
+                } else {
+                    document.getElementById("answer2").innerHTML = num1 + " will be a leap year";
+                    window.console.log(num1 + " will be a leap year");
+                }
+            } else {
+                if (num1 < year) {
+                    document.getElementById("answer2").innerHTML = num1 + " was a not leap year";
+                    window.console.log(num1 + " was not a leap year");
+                } else {
+                    document.getElementById("answer2").innerHTML = num1 + " will not be a leap year";
+                    window.console.log(num1 + " will not be a leap year");
+                }
+            }
+        } else {
+            document.getElementById("answer2").innerHTML = "";
+            document.getElementById("clear2").style.display = "none";
+            document.getElementById("q2i1Error").innerHTML = "* PLEASE ENTER A YEAR BETWEEN 0 AND " + year;
         }
+    }
+
+    function clear2() {
+        document.getElementById("q2i1").value = "";
+        document.getElementById("answer2").innerHTML = "";
+        document.getElementById("clear2").style.display = "none";
     }
 
     function solve3() {
@@ -294,8 +293,9 @@
 
     document.getElementById("submit1").addEventListener("click", solve1);
     document.getElementById("clear1").addEventListener("click", clear1);
-    /*
     document.getElementById("submit2").addEventListener("click", solve2);
+    document.getElementById("clear2").addEventListener("click", clear2);
+    /*
     document.getElementById("submit3").addEventListener("click", solve3);
     document.getElementById("submit4").addEventListener("click", solve4);
     document.getElementById("submit5").addEventListener("click", solve5);
