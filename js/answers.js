@@ -159,15 +159,29 @@
     }
 
     function solve4() {
-        var foursArray = [];
+        var i,
+            equals = false;
 
+        foursArray.sort();
+        for (i = 0; i < foursArray.length; i += 1) {
+            if (i !== 0 && foursArray[i] === foursArray[i - 1]) {
+                equals = true;
+            }
+        }
 
-        document.getElementById("task4Results").innerHTML = foursArray;
+        if (equals) {
+            document.getElementById("task4Results").innerHTML = "There are multiple indicies with the same value";
+        } else {
+            document.getElementById("task4Results").innerHTML = "All indicies have unique values";
+        }
+
         document.getElementById("clear4").style.display = "inline";
     }
 
     function clear4() {
+        foursArray = [];
         document.getElementById("task4Results").innerHTML = "";
+        document.getElementById("foursArrayDisplay").innerHTML = "";
         document.getElementById("clear4").style.display = "none";
     }
 
@@ -213,9 +227,10 @@
     }
 
     function clear5() {
+        fivesArray = [];
         document.getElementById("task5Results").innerHTML = "";
+        document.getElementById("fivesArrayDisplay").innerHTML = "";
         document.getElementById("clear5").style.display = "none";
-        document.getElementById("secondClear5").style.display = "none";
     }
 
     function solve6() {
@@ -271,6 +286,8 @@
     }
 
     function clear7() {
+        sevensArray = [];
+        document.getElementById("sevensArrayDisplay").innerHTML = "";
         document.getElementById("answer7").innerHTML = "";
         document.getElementById("q7i1Error").innerHTML = "";
         document.getElementById("clear7").style.display = "none";
@@ -300,7 +317,10 @@
     }
 
     function clear9() {
-        window.console.log("clear9");
+        ninesArray = [];
+        document.getElementById("ninesArrayDisplay").innerHTML = "";
+        document.getElementById("answer9").innerHTML = "";
+        document.getElementById("clear9").style.display = "none";
     }
 
     function solve10() {
