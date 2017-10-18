@@ -4,6 +4,11 @@
     /* jslint browser */
     /* global window, document */
 
+    var foursArray = [],
+        fivesArray = [],
+        sevensArray = [],
+        ninesArray = [];
+
     function isInt(value) {
         if (isNaN(value)) {
             window.console.log(value + " is NaN");
@@ -126,7 +131,6 @@
         }
     }
 
-
     function clear3() {
         document.getElementById("q3i1").value = "";
         document.getElementById("q3i2").value = "";
@@ -137,34 +141,52 @@
         document.getElementById("clear3").style.display = "none";
     }
 
+    function addTo4sArray() {
+        var value = document.getElementById("q4i1").value.trim();
+        if (isInt(value) && value !== "") {
+            document.getElementById("q4i1Error").innerHTML = "";
+            foursArray.push(value);
+            document.getElementById("foursArrayDisplay").innerHTML = "Your array: [" + foursArray + "]";
+            document.getElementById("q4AddAnIndex").innerHTML = "Add Value Index " + foursArray.length;
+            document.getElementById("q4i1").value = "";
+            document.getElementById("q4i1").focus();
+        } else {
+            document.getElementById("q4i1Error").innerHTML = "* PLEASE ENTER AN INTEGER";
+            document.getElementById("q4i1").value = "";
+            document.getElementById("q4i1").focus();
+        }
+
+    }
+
+    function solve4() {
+        var foursArray = [];
+
+
+        document.getElementById("task4Results").innerHTML = foursArray;
+        document.getElementById("clear4").style.display = "inline";
+    }
+
     function clear4() {
         document.getElementById("task4Results").innerHTML = "";
         document.getElementById("clear4").style.display = "none";
     }
 
-    function solve4() {
-        var htmlResults = "",
-            i;
-        for (i = 0; i <= 15; i += 1) {
-            if (i % 2 === 0) {
-                htmlResults += "the current number is: " + i + ", and it is even <br />";
-                window.console.log("the current number is " + i + ", and it is even");
-            } else {
-                htmlResults += "the current number is: " + i + ", and it is odd <br />";
-                window.console.log("the current number is " + i + ", and it is odd");
-            }
+    function addTo5sArray() {
+        var value = document.getElementById("q5i1").value.trim();
+        if (isInt(value) && value !== "") {
+            document.getElementById("q5i1Error").innerHTML = "";
+            fivesArray.push(value);
+            document.getElementById("fivesArrayDisplay").innerHTML = "Your array: [" + fivesArray + "]";
+            document.getElementById("q5AddAnIndex").innerHTML = "Add Value Index " + fivesArray.length;
+            document.getElementById("q5i1").value = "";
+            document.getElementById("q5i1").focus();
+        } else {
+            document.getElementById("q5i1Error").innerHTML = "* PLEASE ENTER AN INTEGER";
+            document.getElementById("q5i1").value = "";
+            document.getElementById("q5i1").focus();
         }
 
-        document.getElementById("task4Results").innerHTML = htmlResults;
-        document.getElementById("clear4").style.display = "inline";
     }
-
-    function clear5() {
-        document.getElementById("task5Results").innerHTML = "";
-        document.getElementById("clear5").style.display = "none";
-        document.getElementById("secondClear5").style.display = "none";
-    }
-
 
     function solve5() {
         var htmlResults = "",
@@ -190,9 +212,10 @@
         document.getElementById("secondClear5").style.display = "inline";
     }
 
-    function clear6() {
-        document.getElementById("task6Results").innerHTML = "";
-        document.getElementById("clear6").style.display = "none";
+    function clear5() {
+        document.getElementById("task5Results").innerHTML = "";
+        document.getElementById("clear5").style.display = "none";
+        document.getElementById("secondClear5").style.display = "none";
     }
 
     function solve6() {
@@ -208,27 +231,43 @@
         document.getElementById("clear6").style.display = "inline";
     }
 
-
-    function returnNumberOfSpaces(x) {
-        var stringToReturn = "",
-            i = 0;
-        for (i = 0; i < x; i += 1) {
-            stringToReturn += " ";
-        }
-        return stringToReturn;
+    function clear6() {
+        document.getElementById("task6Results").innerHTML = "";
+        document.getElementById("clear6").style.display = "none";
     }
 
-    function returnStringOfNumbers(x) {
-        var stringToReturn = "",
-            i = 0;
-        for (i = 1; i <= x; i += 1) {
-            stringToReturn += i;
+    function addTo7sArray() {
+        var value = document.getElementById("q7i1").value.trim();
+        if (isInt(value) && value !== "") {
+            document.getElementById("q7i1Error").innerHTML = "";
+            sevensArray.push(value);
+            document.getElementById("sevensArrayDisplay").innerHTML = "Your array: [" + sevensArray + "]";
+            document.getElementById("q7AddAnIndex").innerHTML = "Add Value Index " + sevensArray.length;
+            document.getElementById("q7i1").value = "";
+            document.getElementById("q7i1").focus();
+        } else {
+            document.getElementById("q7i1Error").innerHTML = "* PLEASE ENTER AN INTEGER";
+            document.getElementById("q7i1").value = "";
+            document.getElementById("q7i1").focus();
         }
 
-        for (i = x - 1; i > 0; i -= 1) {
-            stringToReturn += i;
+    }
+
+    function solve7() {
+        var num1 = document.getElementById("q7i1").value,
+            pyramid = "<br />",
+            maximumSize = 40;
+        if (!isInt(num1)) {
+            document.getElementById("q7i1Error").innerHTML = "* MUST BE AN INTEGER";
+        } else if (!isAResonableNumber(num1, maximumSize, false)) {
+            document.getElementById("q7i1Error").innerHTML = "* Please keep it between 1 and " + maximumSize + ".";
+        } else {
+            document.getElementById("q7i1Error").innerHTML = "";
+
         }
-        return stringToReturn;
+        document.getElementById("answer7").innerHTML = pyramid;
+        document.getElementById("clear7").style.display = "inline";
+        document.getElementById("secondClear7").style.display = "inline";
     }
 
     function clear7() {
@@ -239,60 +278,37 @@
         document.getElementById("q7i1").value = "";
     }
 
-    function solve7() {
-        var num1 = document.getElementById("q7i1").value,
-            pyramid = "<br />",
-            maximumSize = 40,
-            i = 0;
-        if (!isInt(num1)) {
-            document.getElementById("q7i1Error").innerHTML = "* MUST BE AN INTEGER";
-        } else if (!isAResonableNumber(num1, maximumSize, false)) {
-            document.getElementById("q7i1Error").innerHTML = "* Please keep it between 1 and " + maximumSize + ".";
+    function addTo9sArray() {
+        var value = document.getElementById("q9i1").value.trim();
+        if (isInt(value) && value !== "") {
+            document.getElementById("q9i1Error").innerHTML = "";
+            ninesArray.push(value);
+            document.getElementById("ninesArrayDisplay").innerHTML = "Your array: [" + ninesArray + "]";
+            document.getElementById("q9AddAnIndex").innerHTML = "Add Value Index " + ninesArray.length;
+            document.getElementById("q9i1").value = "";
+            document.getElementById("q9i1").focus();
         } else {
-            document.getElementById("q7i1Error").innerHTML = "";
-
-            for (i = 1; i <= num1; i += 1) {
-                pyramid += "<pre>" + returnNumberOfSpaces(num1 - i) + returnStringOfNumbers(i) + returnNumberOfSpaces(num1 - i) + "</pre><br />";
-                window.console.log(returnNumberOfSpaces(num1 - i) + returnStringOfNumbers(i) + returnNumberOfSpaces(num1 - i));
-            }
+            document.getElementById("q9i1Error").innerHTML = "* PLEASE ENTER AN INTEGER";
+            document.getElementById("q9i1").value = "";
+            document.getElementById("q9i1").focus();
         }
-        document.getElementById("answer7").innerHTML = pyramid;
-        document.getElementById("clear7").style.display = "inline";
-        document.getElementById("secondClear7").style.display = "inline";
+
     }
 
-    function clear8() {
-        document.getElementById("answer8").innerHTML = "";
-        document.getElementById("q8i1Error").innerHTML = "";
-        document.getElementById("clear8").style.display = "none";
-        document.getElementById("secondClear8").style.display = "none";
-        document.getElementById("q8i1").value = "";
+    function solve9() {
+        window.console.log("solve9");
     }
 
-    function solve8() {
-        var num1 = document.getElementById("q8i1").value,
-            pyramid = "<br />",
-            maximumSize = 30,
-            i = 0;
-        if (!isInt(num1)) {
-            document.getElementById("q8i1Error").innerHTML = "* MUST BE AN INTEGER";
-        } else if (!isAResonableNumber(num1, maximumSize, false)) {
-            document.getElementById("q8i1Error").innerHTML = "* Please keep it between 1 and " + maximumSize + ".";
-        } else {
-            document.getElementById("q8i1Error").innerHTML = "";
+    function clear9() {
+        window.console.log("clear9");
+    }
 
-            for (i = 1; i <= num1; i += 1) {
-                pyramid += "<pre>" + returnNumberOfSpaces(num1 - i) + returnStringOfNumbers(i) + returnNumberOfSpaces(num1 - i) + "</pre><br />";
-                window.console.log(returnNumberOfSpaces(num1 - i) + returnStringOfNumbers(i) + returnNumberOfSpaces(num1 - i));
-            }
-            for (i = num1; i >= 1; i -= 1) {
-                pyramid += "<pre>" + returnNumberOfSpaces(num1 - i) + returnStringOfNumbers(i) + returnNumberOfSpaces(num1 - i) + "</pre><br />";
-                window.console.log(returnNumberOfSpaces(num1 - i) + returnStringOfNumbers(i) + returnNumberOfSpaces(num1 - i));
-            }
-        }
-        document.getElementById("answer8").innerHTML = pyramid;
-        document.getElementById("clear8").style.display = "inline";
-        document.getElementById("secondClear8").style.display = "inline";
+    function solve10() {
+        window.console.log("solve10");
+    }
+
+    function clear10() {
+        window.console.log("clear10");
     }
 
     document.getElementById("submit1").addEventListener("click", solve1);
@@ -301,14 +317,21 @@
     document.getElementById("clear2").addEventListener("click", clear2);
     document.getElementById("submit3").addEventListener("click", solve3);
     document.getElementById("clear3").addEventListener("click", clear3);
-    /*
-    document.getElementById("submit3").addEventListener("click", solve3);
     document.getElementById("submit4").addEventListener("click", solve4);
+    document.getElementById("q4AddAnIndex").addEventListener("click", addTo4sArray);
+    document.getElementById("clear4").addEventListener("click", clear4);
     document.getElementById("submit5").addEventListener("click", solve5);
+    document.getElementById("q5AddAnIndex").addEventListener("click", addTo5sArray);
+    document.getElementById("clear5").addEventListener("click", clear5);
     document.getElementById("submit6").addEventListener("click", solve6);
+    document.getElementById("clear6").addEventListener("click", clear6);
     document.getElementById("submit7").addEventListener("click", solve7);
-    document.getElementById("submit8").addEventListener("click", solve8);
-    */
-
+    document.getElementById("q7AddAnIndex").addEventListener("click", addTo7sArray);
+    document.getElementById("clear7").addEventListener("click", clear7);
+    document.getElementById("submit9").addEventListener("click", solve9);
+    document.getElementById("q9AddAnIndex").addEventListener("click", addTo9sArray);
+    document.getElementById("clear9").addEventListener("click", clear9);
+    document.getElementById("submit10").addEventListener("click", solve10);
+    document.getElementById("clear10").addEventListener("click", clear10);
 
 }());
