@@ -403,6 +403,41 @@
         document.getElementById("clear11").style.display = "none";
     }
 
+    function solve12() {
+        var stringToWorkWith = document.getElementById("q12i1").value.trim(),
+            stringArrayToWorkWith = [],
+            combinations = [],
+            combinationsIndex = 0,
+            stringArrayToJoin = [],
+            stringToAdd = "",
+            i,
+            j,
+            k;
+
+        stringArrayToWorkWith = stringToWorkWith.split('');
+
+        for (i = 0; i < stringArrayToWorkWith.length; i += 1) {
+            for (j = 0; j < stringArrayToWorkWith.length; j += 1) {
+                stringArrayToJoin = stringArrayToWorkWith.slice(j, stringArrayToWorkWith.length);
+                for (k = 0; k < stringArrayToJoin.length; k += 1) {
+                    stringToAdd += stringArrayToJoin[k];
+                }
+                combinations[combinationsIndex] = stringToAdd;
+                combinationsIndex += 1;
+                stringToAdd = "";
+            }
+            stringArrayToWorkWith.shift();
+        }
+        document.getElementById("answer12").innerHTML = combinations.toString();
+        document.getElementById("clear12").style.display = "inline";
+    }
+
+    function clear12() {
+        document.getElementById("q12i1").value = "";
+        document.getElementById("answer12").innerHTML = "";
+        document.getElementById("clear12").style.display = "none";
+    }
+
     document.getElementById("submit1").addEventListener("click", solve1);
     document.getElementById("clear1").addEventListener("click", clear1);
     document.getElementById("submit2").addEventListener("click", solve2);
@@ -427,6 +462,8 @@
     document.getElementById("clear10").addEventListener("click", clear10);
     document.getElementById("submit11").addEventListener("click", solve11);
     document.getElementById("clear11").addEventListener("click", clear11);
+    document.getElementById("submit12").addEventListener("click", solve12);
+    document.getElementById("clear12").addEventListener("click", clear12);
 
     document.getElementById('q4i1').onkeypress = function (e) {
         if (!e) {
