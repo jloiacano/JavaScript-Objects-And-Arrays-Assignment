@@ -256,36 +256,37 @@
 
     function addTo7sArray() {
         var value = document.getElementById("q7i1").value.trim();
-        if (isInt(value) && value !== "") {
-            document.getElementById("q7i1Error").innerHTML = "";
-            sevensArray.push(value);
-            document.getElementById("sevensArrayDisplay").innerHTML = "Your array: [" + sevensArray + "]";
-            document.getElementById("q7AddAnIndex").innerHTML = "Add Value Index " + sevensArray.length;
-            document.getElementById("q7i1").value = "";
-            document.getElementById("q7i1").focus();
-        } else {
-            document.getElementById("q7i1Error").innerHTML = "* PLEASE ENTER AN INTEGER";
-            document.getElementById("q7i1").value = "";
-            document.getElementById("q7i1").focus();
-        }
-
+        document.getElementById("q7i1Error").innerHTML = "";
+        sevensArray.push(value);
+        document.getElementById("sevensArrayDisplay").innerHTML = "Your array: [" + sevensArray + "]";
+        document.getElementById("q7AddAnIndex").innerHTML = "Add Value Index " + sevensArray.length;
+        document.getElementById("q7i1").value = "";
+        document.getElementById("q7i1").focus();
     }
 
     function solve7() {
-        var num1 = document.getElementById("q7i1").value,
-            pyramid = "<br />",
-            maximumSize = 40;
-        if (!isInt(num1)) {
-            document.getElementById("q7i1Error").innerHTML = "* MUST BE AN INTEGER";
-        } else if (!isAResonableNumber(num1, maximumSize, false)) {
-            document.getElementById("q7i1Error").innerHTML = "* Please keep it between 1 and " + maximumSize + ".";
-        } else {
-            document.getElementById("q7i1Error").innerHTML = "";
+        var arrayToWorkWith = arrayCopy(sevensArray),
+            largestNumberOfSavedValues = 0,
+            numberOfSameValues = 1,
+            valueThatHasTheMostSames,
+            i;
 
+        arrayToWorkWith.sort();
+        for (i = 1; i < arrayToWorkWith.length - 1; i += 1) {
+            if (arrayToWorkWith[i] === arrayToWorkWith[i - 1]) {
+                numberOfSameValues += 1;
+                if (numberOfSameValues > largestNumberOfSavedValues) {
+                    valueThatHasTheMostSames = arrayToWorkWith[i];
+                    largestNumberOfSavedValues = numberOfSameValues;
+                }
+            } else {
+                numberOfSameValues = 1;
+            }
         }
-        document.getElementById("answer7").innerHTML = pyramid;
+
+
+        document.getElementById("answer7").innerHTML = "The most frequent value is: " + valueThatHasTheMostSames + ", and it occurred " + largestNumberOfSavedValues + " times.";
         document.getElementById("clear7").style.display = "inline";
-        document.getElementById("secondClear7").style.display = "inline";
     }
 
     function clear7() {
@@ -294,7 +295,6 @@
         document.getElementById("answer7").innerHTML = "";
         document.getElementById("q7i1Error").innerHTML = "";
         document.getElementById("clear7").style.display = "none";
-        document.getElementById("secondClear7").style.display = "none";
         document.getElementById("q7i1").value = "";
     }
 
